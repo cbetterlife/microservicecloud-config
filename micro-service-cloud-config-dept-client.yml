@@ -1,0 +1,81 @@
+spring: 
+  profiles:
+    active:
+    - dev
+    
+    
+---
+server: 
+  port: 8001
+
+mybatis-plus:
+  mybatis-location: classpath:mapper/*.xml
+  type-aliases-package: top.chengsw.pojo
+
+spring:
+  profiles: dev
+  application:
+    name: micro-service-cloud-config-dept-client
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver   #mysql驱动包
+    url: jdbc:mysql://122.112.198.115:3306/cloudDB01?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  dbcp2:
+    min-idle: 5                                   # 数据库连接池的最小维持连接数
+    initial-size: 5                               # 初始化连接数
+    max-total: 5                                  # 最大连接数
+    max-wait-millis: 200                          # 等待连接获取的最大超时时间
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: micro-service-cloud-dept-8001       #自定义服务名称信息
+    prefer-ip-address: true                       #访问路径可以显示IP地址
+
+info:
+  app.name: micro-service-cloud-config01
+  company.name: www.chengsw.top
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+    
+---
+server: 
+  port: 8001
+
+mybatis-plus:
+  mybatis-location: classpath:mapper/*.xml
+  type-aliases-package: top.chengsw.pojo
+
+spring:
+  profiles: test
+  application:
+    name: micro-service-cloud-config-dept-client
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver   #mysql驱动包
+    url: jdbc:mysql://122.112.198.115:3306/cloudDB02?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  dbcp2:
+    min-idle: 5                                   # 数据库连接池的最小维持连接数
+    initial-size: 5                               # 初始化连接数
+    max-total: 5                                  # 最大连接数
+    max-wait-millis: 200                          # 等待连接获取的最大超时时间
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: micro-service-cloud-dept-8001       #自定义服务名称信息
+    prefer-ip-address: true                       #访问路径可以显示IP地址
+
+info:
+  app.name: micro-service-cloud-config02
+  company.name: www.chengsw.top
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
